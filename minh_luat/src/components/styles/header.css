@@ -1,0 +1,156 @@
+/* Đây là thanh menu phía trên, không phải toàn bộ khung 1920 × 1080px.
+   Kích thước toàn khung được đặt ở .home-page trong App.css.
+   position + z-index giúp menu xổ xuống hiển thị phía trên nội dung banner. */
+.site-header {
+  position: relative;
+  z-index: 2;
+  padding: 16px 0;
+}
+/* Giữ logo không bị ép nhỏ khi các mục điều hướng chiếm nhiều chiều ngang.
+   Các class Bootstrap trong Header.jsx căn logo và tên thương hiệu cùng hàng. */
+.brand {
+  flex-shrink: 0;
+  gap: 7px;
+  color: #fff;
+}
+.brand:hover {
+  color: #fff;
+}
+.brand-mark {
+  width: 47px;
+  height: 50px;
+}
+.brand-copy {
+  display: flex;
+  flex-direction: column;
+}
+.brand-name {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 0.4px;
+}
+.brand-tagline {
+  text-align: center;
+  font-size: 9px;
+  margin-top: 2px;
+}
+/* Menu desktop xếp ngang bằng flex; gap là khoảng cách giữa các mục. */
+.desktop-navigation {
+  display: flex;
+  gap: 40px;
+  margin-left: 110px;
+}
+.site-header .nav-link {
+  color: #fff;
+  font-size: 17px;
+  padding: 8px 0;
+  white-space: nowrap;
+}
+.site-header a.nav-link:hover {
+  color: #e6b5bc;
+}
+.nav-placeholder {
+  cursor: default;
+}
+/* Dùng thẻ HTML details / summary để đóng mở danh sách dịch vụ,
+   không cần useState hay JavaScript của Bootstrap. */
+.services-menu {
+  position: relative;
+}
+.services-menu summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  list-style: none;
+}
+.services-menu summary::-webkit-details-marker,
+.mobile-navigation summary::-webkit-details-marker {
+  display: none;
+}
+/* Hai cạnh viền xoay 45 độ tạo biểu tượng mũi tên hướng xuống. */
+.menu-chevron {
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  transform: rotate(45deg);
+  margin-top: -4px;
+}
+/* Định vị danh sách ngay dưới mục dịch vụ nhờ phần tử cha position: relative. */
+.services-dropdown {
+  position: absolute;
+  top: 100%;
+  left: -16px;
+  min-width: 250px;
+  padding: 8px;
+  background: #111a2b;
+  border: 1px solid #ffffff26;
+  border-radius: 8px;
+  box-shadow: 0 12px 32px #0005;
+}
+.services-dropdown a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+  font-size: 15px;
+}
+.services-dropdown a:hover {
+  background: #ffffff12;
+}
+.mobile-navigation {
+  display: none;
+}
+/* Giảm khoảng cách và cỡ chữ để menu vừa màn hình desktop nhỏ. */
+@media (max-width: 1399.98px) {
+  .desktop-navigation {
+    gap: 24px;
+    margin-left: 24px;
+  }
+  .site-header .nav-link {
+    font-size: 15px;
+  }
+  .brand-name {
+    font-size: 27px;
+  }
+}
+/* Dưới 992px: ẩn menu ngang, hiện nút ba gạch.
+   Thẻ details mở bảng điều hướng bên dưới thanh menu.
+   Menu dịch vụ lồng bên trong dùng position: static để nằm trong luồng nội dung. */
+@media (max-width: 991.98px) {
+  .desktop-navigation,
+  .header-consultation {
+    display: none;
+  }
+  .mobile-navigation {
+    display: block;
+  }
+  .mobile-navigation > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+  .mobile-navigation > summary span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    margin: 5px 0;
+  }
+  .mobile-navigation > nav {
+    position: absolute;
+    top: 100%;
+    left: 22px;
+    right: 22px;
+    padding: 20px;
+    background: #101827;
+    border: 1px solid #ffffff26;
+    border-radius: 8px;
+  }
+  .mobile-navigation .services-dropdown {
+    position: static;
+    margin-bottom: 8px;
+  }
+}

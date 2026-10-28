@@ -1,0 +1,242 @@
+/* Khung đầu trang chứa Header, HeroSection và StatsSection.
+   width: 100% giúp khung vừa màn hình; max-width giới hạn chiều ngang ở 1920px.
+   margin-inline: auto căn giữa khung khi màn hình rộng hơn 1920px.
+   100svh là chiều cao vùng nhìn nhỏ của trình duyệt, hữu ích trên điện thoại.
+   Ảnh nền đã có chân dung; cover phủ kín khung và có thể cắt bớt mép ảnh. */
+.home-page {
+  width: 100%;
+  max-width: 1920px;
+  margin-inline: auto;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  background: #090e1b url("/images/hero.png") center top / cover no-repeat;
+}
+/* Giới hạn vùng nội dung bên trong, độc lập với chiều rộng ảnh nền.
+   Bootstrap .container cung cấp căn giữa và khoảng đệm hai bên. */
+.home-page .container {
+  max-width: 1384px;
+}
+/* Ghi đè biến của Bootstrap .btn để dùng chung màu nút tư vấn,
+   kể cả khi di chuột hoặc nhấn nút. */
+.consultation-button {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #c51b2c;
+  --bs-btn-border-color: #c51b2c;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #a91525;
+  --bs-btn-hover-border-color: #a91525;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #a91525;
+  --bs-btn-active-border-color: #a91525;
+  border-radius: 8px;
+  font-size: 17px;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+/* flex: 1 lấy phần chiều cao còn lại bên dưới thanh menu.
+   Bố cục dọc cho phép đặt nội dung trước, thống kê phía dưới. */
+.hero-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 92px;
+  padding-bottom: 76px;
+}
+.hero-content {
+  max-width: 700px;
+}
+.hero-eyebrow {
+  margin: 0 0 38px;
+  font-size: 24px;
+  font-weight: 500;
+}
+/* clamp(cỡ nhỏ nhất, cỡ theo chiều rộng màn hình, cỡ lớn nhất)
+   giúp tiêu đề thay đổi trong khoảng 36–52px ở bố cục mặc định. */
+.hero-title {
+  margin: 0;
+  font-size: clamp(36px, 2.71vw, 52px);
+  font-weight: 700;
+  line-height: 1.44;
+  letter-spacing: -1.6px;
+}
+.hero-title span {
+  display: block;
+}
+.hero-description {
+  /* Hiển thị tối đa 5 dòng; nội dung dài hơn được rút gọn bằng dấu … */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  overflow: hidden;
+
+  margin: 78px 0 24px;
+  max-width: 680px;
+  font-size: 19px;
+  line-height: 1.43;
+  letter-spacing: 0.1px;
+}
+.hero-consultation {
+  padding: 10px 16px;
+  font-size: 19px;
+  gap: 10px;
+}
+.hero-consultation svg {
+  width: 23px;
+  height: 23px;
+}
+/* margin-top: auto đẩy thống kê xuống khi còn khoảng trống trong khung.
+   padding-top giữ khoảng cách tối thiểu với nội dung phía trên.
+   Số cột do class Bootstrap col-6 / col-sm-3 trong StatsSection quyết định. */
+.hero-statistics {
+  margin-top: auto;
+  padding-top: 142px;
+}
+.stat-item {
+  width: fit-content;
+  text-align: center;
+}
+/* Số thống kê dùng DM Serif Display ở độ đậm 400;
+   các nội dung khác kế thừa Be Vietnam Pro từ index.css. */
+.stat-value {
+  display: block;
+  font-family: "DM Serif Display", serif;
+  font-size: 68px;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+.stat-value span {
+  font-weight: 400;
+}
+.stat-label {
+  display: block;
+  margin-top: 4px;
+  font-size: 18px;
+  font-weight: 500;
+}
+/* Từ 1600px: cố định chiều cao toàn khung ở 1080px, gồm menu, banner, thống kê.
+   Khi vùng hiển thị rộng 1920px, khung đạt đúng 1920 × 1080px.
+   min-height: 0 cho phép vùng hero co trong bố cục flex;
+   flex-shrink: 0 giữ nguyên chiều cao hàng thống kê. */
+@media (min-width: 1600px) {
+  .home-page {
+    height: 1080px;
+    min-height: 1080px;
+  }
+  .hero-section {
+    min-height: 0;
+  }
+  .hero-statistics {
+    flex-shrink: 0;
+    padding-top: 40px;
+  }
+}
+/* Desktop nhỏ: giảm chiều rộng nội dung, cỡ chữ và khoảng cách. */
+@media (max-width: 1399.98px) {
+  .home-page .container {
+    max-width: 1180px;
+  }
+  .hero-section {
+    padding-top: 65px;
+    padding-bottom: 48px;
+  }
+  .hero-content {
+    max-width: 600px;
+  }
+  .hero-description {
+    max-width: 570px;
+    margin-top: 48px;
+    font-size: 17px;
+  }
+  .hero-statistics {
+    padding-top: 100px;
+  }
+}
+/* Tablet: thu hẹp phần chữ và dịch ảnh nền theo chiều ngang. */
+@media (max-width: 991.98px) {
+  .home-page {
+    background-position: 59% top;
+  }
+  .home-page .container {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+  .hero-section {
+    padding-top: 58px;
+  }
+  .hero-content {
+    max-width: 56%;
+  }
+  .hero-eyebrow {
+    font-size: 17px;
+    margin-bottom: 24px;
+  }
+  .hero-title {
+    font-size: 34px;
+    letter-spacing: -0.8px;
+    line-height: 1.35;
+  }
+  .hero-description {
+    margin-top: 34px;
+    font-size: 16px;
+  }
+  .hero-statistics {
+    padding-top: 88px;
+  }
+  .stat-value {
+    font-size: 54px;
+  }
+  .stat-label {
+    font-size: 14px;
+  }
+}
+/* Điện thoại: chữ chiếm toàn chiều rộng nội dung.
+   Lớp gradient làm tối nền để chữ dễ đọc khi nằm trên chân dung.
+   Bootstrap chuyển thống kê thành 2 cột; row-gap tạo khoảng cách giữa hai hàng. */
+@media (max-width: 575.98px) {
+  .home-page {
+    background-image: linear-gradient(90deg, rgba(5, 10, 22, 0.85), rgba(5, 10, 22, 0.58)), url("/images/hero.png");
+    background-position: 64% top;
+  }
+  .home-page .container {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+  .hero-section {
+    padding-top: 44px;
+    padding-bottom: 36px;
+  }
+  .hero-content {
+    max-width: 100%;
+  }
+  .hero-eyebrow {
+    font-size: 15px;
+  }
+  .hero-title {
+    font-size: clamp(27px, 7.2vw, 39px);
+    line-height: 1.45;
+  }
+  .hero-description {
+    margin-top: 32px;
+    font-size: 16px;
+  }
+  .hero-consultation {
+    font-size: 16px;
+  }
+  .hero-statistics {
+    padding-top: 62px;
+    row-gap: 30px;
+  }
+  .stat-item {
+    width: 100%;
+  }
+  .stat-value {
+    font-size: 49px;
+  }
+  .stat-label {
+    font-size: 13px;
+  }
+}

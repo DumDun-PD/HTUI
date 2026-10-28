@@ -1,0 +1,17 @@
+
+:root {
+  --bs-font-sans-serif: 'Be Vietnam Pro', sans-serif;
+  --bs-body-font-family: var(--bs-font-sans-serif);
+  font-family: var(--bs-font-sans-serif);
+  color: #fff;
+  background: #090e1b;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid #fff; outline-offset: 6px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
